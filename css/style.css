@@ -65,6 +65,7 @@ body {
 }
 
 .navigation {
+    position: absolute;
     padding: 0 20px;
     box-sizing: border-box;
     height: 48px;
@@ -74,6 +75,11 @@ body {
     justify-content: space-between;
     align-items: center;
     align-content: center;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
 }
 
 .logo {
@@ -112,7 +118,6 @@ body {
     margin-top: 40px;
 }
 
-
 .education {
     height: 100%;
     width: 100%;
@@ -122,6 +127,8 @@ body {
     align-items: center;
     align-content: center;
     background-color: #ededed;
+    padding-top: 48px;
+    box-sizing: border-box;
 }
 
 .line {
@@ -147,6 +154,21 @@ body {
 .large {
     font-size: 40px;
 }
+
+.skills {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #ededed;
+    padding-top: 48px;
+    box-sizing: border-box;
+}
+
+.chat {}
 
 @keyframes fadeCirculate {
     0% {
