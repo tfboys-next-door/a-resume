@@ -21,9 +21,9 @@ body {
 
 .container {
     position: relative;
-    width: 100%;
+    width: 80%;
     min-width: 600px;
-    height: 100%;
+    height: 80%;
     min-height: 400px;
     display: flex;
     background-color: white;
@@ -44,7 +44,12 @@ body {
     display: flex;
     align-content: center;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.right-side:hover .shadow {
+    opacity: 1;
+    pointer-events: visible;
 }
 
 .center-img {
@@ -92,9 +97,148 @@ body {
 }
 
 .hamburger-button {
-    position: absolute;
     cursor: pointer;
-    top: 35px;
-    right: 40px;
     width: 20px;
+}
+
+.show .bar:first-child {
+    width: 20px;
+    transform: translate(2px, 6px) rotate(45deg);
+    background-color: deepskyblue;
+}
+
+.show .bar:last-child {
+    width: 20px;
+    transform: translate(2px, -6px) rotate(-45deg);
+    background-color: deepskyblue;
+}
+
+.show .bar:nth-child(2) {
+    opacity: 0;
+    background-color: deepskyblue;
+}
+
+.bar {
+    width: 22px;
+    height: 2px;
+    margin: 4px auto;
+    position: relative;
+    background-color: black;
+    border-radius: 4px;
+    transition: all 0.8s ease;
+}
+
+.main-container {
+    width: 60%;
+}
+
+.first-name {
+    font-weight: 700;
+    font-size: 32px;
+    margin: 0;
+}
+
+.last-name {
+    font-weight: 700;
+    font-size: 32px;
+    color: #2d4665;
+    margin: 0;
+}
+
+.living-place {
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.details {
+    font-weight: 300;
+}
+
+.shadow {
+    position: absolute;
+    height: 100%;
+    width: 80px;
+    right: 0px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.arrow {
+    width: auto;
+    height: 40px;
+    cursor: pointer;
+}
+
+.navigation {
+    position: absolute;
+    right: 40px;
+    top: 35px;
+}
+
+.navigations {
+    position: absolute;
+    top: -20%;
+    right: 150%;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 4px;
+    /*border: 1px solid grey;*/
+    box-shadow: 0 1px 4px gray;
+    padding: 10px 10px;
+}
+
+.link-text {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.link-text:hover {
+    color: deepskyblue;
+}
+
+.selected {
+    color: deepskyblue;
+}
+
+.fadeShow {
+    animation: fadeShow 0.8s ease;
+}
+
+.fadeOut {
+    animation: fadeOut 0.8s ease;
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes fadeShow {
+    0% {
+        opacity: 0;
+        transform: translateX(50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(50%);
+    }
 }
