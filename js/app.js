@@ -2,20 +2,41 @@
 
 window.addEventListener('resize', setPosition);
 
-var introImg = document.getElementById('introImg');
-var skillImg = document.getElementById('skillImg');
-var experienceImg = document.getElementById('experienceImg');
+// var introImg = document.getElementById('introImg');
+// var skillImg = document.getElementById('skillImg');
+// var experienceImg = document.getElementById('experienceImg');
 var rightSide = document.getElementById('rightSide');
 var leftSide = document.getElementById('leftSide');
 var hamburgerButton = document.getElementById('hamburgerButton');
 var navigations = document.getElementById('navigations');
-var introContainer = document.getElementById('introContainer');
-var skillsContainer = document.getElementById('skillsContainer');
-var experienceContainer = document.getElementById('experienceContainer');
+// var introContainer = document.getElementById('introContainer');
+// var skillsContainer = document.getElementById('skillsContainer');
+// var experienceContainer = document.getElementById('experienceContainer');
 var arrow = document.getElementById('arrow');
-var introductionLink = document.getElementById('introductionLink');
+var introLink = document.getElementById('introductionLink');
 var skillsLink = document.getElementById('skillsLink');
 var experienceLink = document.getElementById('experienceLink');
+
+var controls = {
+    intro: {
+        img: document.getElementById('introImg'),
+        container: document.getElementById('introContainer'),
+        link: introLink,
+        color: 'grey',
+    },
+    skill: {
+        img: document.getElementById('skillImg'),
+        container: document.getElementById('skillsContainer'),
+        link: skillsLink,
+        color: 'green',
+    },
+    experience: {
+        img: document.getElementById('experienceImg'),
+        container: document.getElementById('experienceContainer'),
+        link: experienceLink,
+        color: 'purple',
+    }
+}
 
 
 var isNavigationShow = false;
@@ -29,75 +50,75 @@ function setPosition() {
 
 window.addEventListener('load', setPosition);
 
-arrow.addEventListener('click', nextPage);
-window.addEventListener('mousewheel', nextPage);
+function navigateTo(to) {
+    controls[to].img.classList.add('fadeAppear');
+    controls[to].img.classList.remove('hide');
+    controls[pageState].img.classList.add('fadeDisappear');
+    leftSide.classList.remove(controls[pageState].color);
+    leftSide.classList.add(controls[to].color);
+    controls[pageState].container.classList.add('fadeShowAway');
+    controls[pageState].link.classList.remove('selected');
+    controls[to].link.classList.add('selected');
+    setTimeout(function () {
+        controls[pageState].img.classList.add('hide');
+        controls[pageState].img.classList.remove('fadeDisappear');
+        controls[to].img.classList.remove('fadeAppear');
+        controls[pageState].container.classList.remove('fadeShowAway');
+        controls[pageState].container.classList.add('displaynone');
+        controls[to].container.classList.add('fadeShow');
+        controls[to].container.classList.remove('displaynone');
+        setTimeout(function () {
+            pageState = to;
+            controls[pageState].container.classList.remove('fadeShow');
+        }, 490)
+    }, 490);
+}
 
 function nextPage() {
     if (pageState === 'intro') {
-        pageState = 'skill';
-        skillImg.classList.add('fadeAppear');
-        skillImg.classList.remove('hide');
-        introImg.classList.add('fadeDisappear');
-        leftSide.classList.add('green');
-        introContainer.classList.add('fadeShowAway');
-        introductionLink.classList.remove('selected');
-        setTimeout(function () {
-            introImg.classList.add('hide');
-            introImg.classList.remove('fadeDisappear');
-            skillImg.classList.remove('fadeAppear');
-            introContainer.classList.remove('fadeShowAway');
-            introContainer.classList.add('displaynone');
-            skillsContainer.classList.add('fadeShow');
-            skillsContainer.classList.remove('displaynone');
-            setTimeout(function () {
-                skillsContainer.classList.remove('fadeShow');
-            }, 490)
-        }, 490);
+        navigateTo('skill');
     } else if (pageState === 'skill') {
-        pageState = 'experience';
-        experienceImg.classList.add('fadeAppear');
-        experienceImg.classList.remove('hide');
-        skillImg.classList.add('fadeDisappear');
-        leftSide.classList.remove('green');
-        leftSide.classList.add('purple');
-        skillsContainer.classList.add('fadeShowAway');
-        setTimeout(function () {
-            skillImg.classList.add('hide');
-            skillImg.classList.remove('fadeDisappear');
-            experienceImg.classList.remove('fadeAppear');
-            skillsContainer.classList.remove('fadeShowAway');
-            skillsContainer.classList.add('displaynone');
-            experienceContainer.classList.add('fadeShow');
-            experienceContainer.classList.remove('displaynone');
-            setTimeout(function () {
-                experienceContainer.classList.remove('fadeShow');
-            }, 490)
-        }, 490);
-    } else if (pageState === 'experience') {
-        pageState = 'intro';
-        introImg.classList.add('fadeAppear');
-        introImg.classList.remove('hide');
-        experienceImg.classList.add('fadeDisappear');
-        leftSide.classList.remove('purple');
-        experienceContainer.classList.add('fadeShowAway');
-        setTimeout(function () {
-            experienceImg.classList.add('hide');
-            experienceImg.classList.remove('fadeDisappear');
-            introImg.classList.remove('fadeAppear');
-            experienceContainer.classList.remove('fadeShowAway');
-            experienceContainer.classList.add('displaynone');
-            introContainer.classList.add('fadeShow');
-            introContainer.classList.remove('displaynone');
-            setTimeout(function () {
-                introContainer.classList.remove('fadeShow');
-            }, 490)
-        }, 490);
+        navigateTo('experience');
+    } else {
+        navigateTo('intro');
     }
 }
 
+function previousPage() {
+    if (pageState === 'intro') {
+        navigateTo('experience');
+    } else if (pageState === 'skill') {
+        navigateTo('intro');
+    } else {
+        navigateTo('skill');
+    }
+}
 
+arrow.addEventListener('click', nextPage);
 
+window.addEventListener('mousewheel', function(event) {
+    if (event.wheelDelta > 0) {
+        previousPage();
+    } else {
+        nextPage();
+    }
+})
 
+navigations.addEventListener('click', function (event) {
+    if (event.target.id === 'introductionLink') {
+        if (pageState != 'intro') {
+            navigateTo('intro');
+        }
+    } else if (event.target.id === 'skillsLink') {
+        if (pageState != 'skill') {
+            navigateTo('skill');
+        }
+    } else if (event.target.id === 'experienceLink') {
+        if (pageState != 'experience') {
+            navigateTo('experience');
+        }
+    }
+})
 
 hamburgerButton.addEventListener('click', function () {
     if (isNavigationShow == false) {
