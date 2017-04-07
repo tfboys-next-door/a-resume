@@ -37,7 +37,27 @@
                 <p class="details">一个乐观向上的 Coder，热爱一切与前端有关的新鲜事物 Blablablablabla..
                 </p>
             </div>
-            <div id="shadowNav" class="shadow"><img class="arrow" src="assets/btn_next_page.png" /></div>
+            <div id="skillsContainer" class="main-container displaynone">
+                <p class="skills-title">SKILLS</p>
+                <p class="skills-chat"><span class="skills-text">Web</span><span class="skills-web"></span></p>
+                <p class="skills-chat"><span class="skills-text">C#/UWP</span><span class="skills-cpp"></span></p>
+            </div>
+            <div id="experienceContainer" class="main-container displaynone">
+                <p class="experience-title">EXPERIENCE</p>
+                <div class="experience-project">
+                    <p class="project-title">danmaku.js</p>
+                    <p class="project-detail"><a href="https://github.com/delbertbeta/danmaku.js">一个实验性的基于 DOM 的弹幕引擎</a></p>
+                </div>
+                <div class="experience-project">
+                    <p class="project-title">social-comment</p>
+                    <p class="project-detail"><a href="https://github.com/delbertbeta/social-comment">社会化评论框架</a></p>
+                </div>
+                <div class="experience-project">
+                    <p class="project-title">moe-loader</p>
+                    <p class="project-detail"><a href="https://github.com/delbertbeta/moe-loader">与他人共同维护的图站爬虫</a></p>
+                </div>
+            </div>
+            <div id="shadowNav" class="shadow"><img id="arrow" class="arrow" src="assets/btn_next_page.png" /></div>
         </div>
         <div class="navigation">
             <div id="hamburgerButton" class="hamburger-button">
@@ -46,12 +66,14 @@
                 <div class="bar"></div>
             </div>
             <div id="navigations" class="navigations hide">
-                <p class="link-text selected">INTRODUCTION</p>
-                <p class="link-text">SKILLS</p>
-                <p class="link-text">EXPERIENCE</p>
+                <p id="introductionLink" class="link-text selected">INTRODUCTION</p>
+                <p id="skillsLink" class="link-text">SKILLS</p>
+                <p id="experienceLink" class="link-text">EXPERIENCE</p>
             </div>
         </div>
-        <img id="centerImg" class="center-img" src="./assets/img_show.jpg"></img>
+        <img id="introImg" class="center-img" src="./assets/img_show.jpg" />
+        <img id="skillImg" class="center-img hide" src="./assets/img_skills.jpg" />
+        <img id="experienceImg" class="center-img hide" src="./assets/img_experience.jpg" />
     </div>
     <script src="js/app.js"></script>
 </body>
